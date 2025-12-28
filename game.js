@@ -9,6 +9,7 @@ export class Game {
   DISTANCE_BETWEEN_PIPES = 3.5 * Pipe.width
   frameCount = 0
   score = 0
+  heightScore = localStorage.getItem('highScore') || 0
   isGameStarted = false
 
   constructor(canvas) {
@@ -45,8 +46,16 @@ export class Game {
   }
 
   stop() {
+    if (this.score > this.heightScore) localStorage.setItem('highScore', this.score)
     clearInterval(this.intervalId)
+    // this.restart()
   }
+
+  // restart() {
+  //   this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+  //   this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+  //   if(confirm('Restart?')) this.start()
+  // }
 
   draw() {
     this.ctx.drawImage(this.BG_IMG, 0, 0, this.canvas.width, this.canvas.height)
@@ -105,7 +114,7 @@ export class Game {
     this.ctx.lineWidth = 8
     this.ctx.strokeStyle = '#533846'
     this.ctx.textBaseline = 'top'
-    this.ctx.strokeText(this.score, this.canvas.width / 2, 15)
-    this.ctx.fillText(this.score, this.canvas.width / 2, 15)
+    this.ctx.strokeText(this.score + ' (' + this.heightScore + ')', this.canvas.width / 2, 15)
+    this.ctx.fillText(this.score + ' (' + this.heightScore + ')', this.canvas.width / 2, 15)
   }
 }
