@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #272b31;
+}
+canvas {
+  height: 100dvh; /*Потрібно для висоти під смартфон*/
+  width: min(100dvw, 60dvh); /*Мінімальна ширина від 100% ширини браузеро, або 60% висоти*/
+  background: #fff;
+}
